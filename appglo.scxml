@@ -1,0 +1,3494 @@
+<scxml version="1.0" datamodel="ecmascript">
+  <datamodel>
+    <data
+      id="toyGenderPreferenceStack"
+      expr={() => [
+        {
+          key: 'action_figures',
+          label: {
+            en: 'Action Figures',
+          },
+          image: {
+            path:
+              'https://movement-prod.imgix.net/uploads/12/992172bff848eb9254a856aedbb275/upload.jpg?fit=min&h=300&w=300',
+            ratio: '1:1',
+          },
+        },
+        {
+          key: 'dolls',
+          label: {
+            en: 'Dolls',
+          },
+          image: {
+            path:
+              'https://movement-prod.imgix.net/uploads/30/542da6841344f6840f25adc9ad23a3/upload.jpg?fit=min&h=300&w=300',
+            ratio: '1:1',
+          },
+        },
+        {
+          key: 'lego',
+          label: {
+            en: 'Lego',
+          },
+          image: {
+            path:
+              'https://movement-prod.imgix.net/uploads/ec/fcf11b400a4566b3eb193bbfbe2b5a/upload.jpg?fit=min&h=300&w=300',
+            ratio: '1:1',
+          },
+        },
+        {
+          key: 'sports',
+          label: {
+            en: 'Sports balls',
+          },
+          image: {
+            path:
+              'https://movement-prod.imgix.net/uploads/e9/5ea7fa9bad43018d18210b0e09ae7b/upload.jpg?fit=min&h=300&w=300',
+            ratio: '1:1',
+          },
+        },
+        {
+          key: 'games',
+          label: {
+            en: 'Games',
+          },
+          image: {
+            path:
+              'https://movement-prod.imgix.net/uploads/6e/669b3277d14e2088f0be710c6e0c89/upload.jpg?fit=min&h=300&w=300',
+            ratio: '1:1',
+          },
+        },
+        {
+          key: 'markers',
+          label: {
+            en: 'Markers',
+          },
+          image: {
+            path:
+              'https://movement-prod.imgix.net/uploads/e5/5af6641faa425ca7a6533ff11a4fa3/upload.jpg?fit=min&h=300&w=300',
+            ratio: '1:1',
+          },
+        },
+        {
+          key: 'stuffed_animals',
+          label: {
+            en: 'Stuffed animals',
+          },
+          image: {
+            path:
+              'https://movement-prod.imgix.net/uploads/c5/de181014c841b9a9546b4606e83d37/upload.jpg?fit=min&h=300&w=300',
+            ratio: '1:1',
+          },
+        },
+      ]}
+    />
+    <data
+      id="outcomeTitles"
+      expr={() => [
+        `Stretch Armstrong`,
+        `Etch-a-Sketch`,
+        `Mouse Trap`,
+        `Evel Knievel Stunt Cycle`,
+        `Atari 2600`,
+        `Six Million Dollar Man`,
+        `Rock'em Sock'em Robots`,
+        `Lite Brite`,
+        `Cabbage Patch Kids`,
+        `Teddy Ruxpin`,
+        `Nintendo`,
+        `Game Boy`,
+        `Glo Worm`,
+        `Masters of the Universe / He-Man`,
+        `Care Bears`,
+        `Thundercats`,
+        `Monchichi`,
+        `Voltron`,
+        `A-team Action Figures`,
+        `Polly Pocket`,
+        `Tickle-me Elmo`,
+        `Furby`,
+        `Tamagotchi`,
+        `American Girl Doll`,
+        `Super Soaker`,
+        `WWF Wrestling Buddies`,
+        `Little Tikes Cozy Coupe`,
+        `Beanie Babies`,
+        `Buzz Lightyear`,
+    ]} />
+  </datamodel>
+  <state initial="start">
+    <onentry>
+      <script>
+        {(data, context) => {
+          context.computeScore = (datamodel, weights = {}) =>
+            Object.keys(weights).reduce(
+              (acc, k) => acc + ((datamodel[k] || 0) * weights[k] || 0),
+              0,
+            );
+
+          context.has = (_event, key) => _event.data.get('response').has(key);
+
+          context.isCurrentState = context.In;
+        }}
+      </script>
+    </onentry>
+
+    <element id="doc-background">
+      {(_props, data, context) => (
+        <theme-observer>
+          {({ css_styles: {
+            agStyleblock,
+            agStyleContainer,
+            blue1,
+            blue2,
+            blue3,
+            purple1,
+            purple2,
+            green1,
+            green2,
+            green3,
+            yellow1,
+            yellow2,
+          } }) => (
+            <ul className={agStyleContainer}>
+              <li className={`${agStyleblock} ${blue3}`}></li>
+              <li className={`${agStyleblock} ${blue3}`}></li>
+              <li className={`${agStyleblock} ${green1}`}></li>
+              <li className={`${agStyleblock} ${green2}`}></li>
+              <li className={`${agStyleblock} ${green2}`}></li>
+              <li className={`${agStyleblock}`}></li>
+              <li className={`${agStyleblock}`}></li>
+              <li className={`${agStyleblock} ${blue3}`}></li>
+              <li className={`${agStyleblock} ${blue3}`}></li>
+              <li className={`${agStyleblock} ${green3}`}></li>
+              <li className={`${agStyleblock}`}></li>
+              <li className={`${agStyleblock}`}></li>
+              <li className={`${agStyleblock}`}></li>
+              <li className={`${agStyleblock} ${yellow1}`}></li>
+              <li className={`${agStyleblock} ${yellow2}`}></li>
+              <li className={`${agStyleblock} ${blue2}`}></li>
+              <li className={`${agStyleblock}`}></li>
+              <li className={`${agStyleblock} ${green1}`}></li>
+              <li className={`${agStyleblock}`}></li>
+              <li className={`${agStyleblock}`}></li>
+              <li className={`${agStyleblock}`}></li>
+              <li className={`${agStyleblock} ${yellow1}`}></li>
+              <li className={`${agStyleblock}`}></li>
+              <li className={`${agStyleblock}`}></li>
+              <li className={`${agStyleblock}`}></li>
+              <li className={`${agStyleblock}`}></li>
+              <li className={`${agStyleblock}`}></li>
+              <li className={`${agStyleblock}`}></li>
+            </ul>
+          )}
+        </theme-observer>
+      )}
+    </element>
+
+    <element id="doc-cover">
+      {(_props, data, { _raise }) => (
+        <theme-observer>
+          {({ css_styles: {
+            cover,
+            coverContent,
+            coverSlides,
+            coverSlide,
+            coverTitle,
+            startButton,
+            arrowIcon
+          } }) => (
+            <div className={cover}>
+              <div className={coverSlides}>
+                <figure className={coverSlide} style={{
+                  backgroundImage: 'url(https://movement-prod.imgix.net/uploads/8d/46d565142745a2aceaac67320652d3/upload.jpg)'
+                }}>
+                </figure>
+                <figure className={coverSlide}  style={{
+                  backgroundImage: 'url(https://movement-prod.imgix.net/uploads/43/9b161b15d74f4496f1334421e4c02e/upload.jpg)'
+                }}>
+                </figure>
+                <figure className={coverSlide}  style={{
+                  backgroundImage: 'url(https://movement-prod.imgix.net/uploads/6e/b37c0ac860416d96d124f845b605bc/upload.jpg)'
+                }}>
+                </figure>
+                <figure className={coverSlide}  style={{
+                  backgroundImage: 'url(https://movement-prod.imgix.net/uploads/0c/7eef0cd62e42c2af46a3d09861187a/upload.jpg)'
+                }}>
+                </figure>
+                <figure className={coverSlide}  style={{
+                  backgroundImage: 'url(https://movement-prod.imgix.net/uploads/53/b6ca5846864eac95428c1ef0eb4d55/upload.jpg)'
+                }}>
+                </figure>
+                <figure className={coverSlide}  style={{
+                  backgroundImage: 'url(https://movement-prod.imgix.net/uploads/11/252917d3db45b5b90d3ea9b00d5105/upload.jpg)'
+                }}>
+                </figure>
+                <figure className={coverSlide}  style={{
+                  backgroundImage: 'url(https://movement-prod.imgix.net/uploads/8d/46d565142745a2aceaac67320652d3/upload.jpg)'
+                }}>
+                </figure>
+              </div>
+              <div className={coverContent}>
+                <doc-logo/>
+                <h1 className={coverTitle}>
+                  <qzzr-translate>
+                    {{ en: 'Which Classic Toy Are You?' }}
+                  </qzzr-translate>
+                </h1>
+                <button className={startButton} onClick={() => _raise('start')}>
+                  <qzzr-translate>
+                    {{ en: 'Start Quiz' }}
+                  </qzzr-translate>
+                  <i className={arrowIcon}>
+                  </i>
+                </button>
+              </div>
+            </div>
+          )}
+        </theme-observer>
+      )}
+    </element>
+
+    <element id="doc-logo">
+      {({ textColor }) => (
+        <theme-observer>
+          {({ css_styles: {
+            logo
+          } }) => (
+            <svg className={logo}>
+            <g>
+              <g>
+                <g>
+                  <path d="M15.5,10.6C0.5,10.6-0.1,22.2,0,25.3c0,0-0.7,13.6,15.1,13.6c13.6,0,14.3-8.5,14.3-8.5l-6.3,0c0,0-1.2,4.7-8,4.6
+                    c-8.7-0.2-9-8.6-9-8.6h24.1C30.2,26.3,32,10.6,15.5,10.6z M6.3,22.2c0,0,0.4-7.6,9-7.6c8.6,0,8.6,7.6,8.6,7.6H6.3z"/>
+                </g>
+              </g>
+              <g>
+                <g>
+                  <path d="M47,10.6c-7.5,0-10.8,4.5-10.8,4.5V0h-6l0.1,31.8c0,0,0,3.7-0.3,6.2h5.9l0.3-3.6c0,0,2.7,4.5,10.7,4.5
+                    c8,0,14.3-4.9,14.5-14C61.5,15.7,54.5,10.6,47,10.6z M45.6,34.8c-9.5,0.1-9.4-10.1-9.4-10.1s-0.3-9.8,9.3-10.1
+                    c9.7-0.3,9.4,10.3,9.4,10.3S55.1,34.7,45.6,34.8z"/>
+                </g>
+              </g>
+              <g>
+                <g>
+                  <path d="M89.2,31.7c0-4.1,0.1-7.8,0-10.4c-0.2-3,0.1-10.3-12.9-10.8c0,0-12.5-1.1-13.8,8.1h6.4c0,0,0.5-4.2,7-4.1
+                    c6.1,0.1,7.2,3.1,7.2,6.8c0,0-5.2,0-7,0c-3.2,0-14.2,0.4-15.2,7.1c-1.2,8,5.9,10.5,11.5,10.5c5.6,0,8.8-1.7,11.1-4.7l0.3,3.7
+                    l5.6,0C89.3,37.9,89.2,35.8,89.2,31.7z M73.4,35c0,0-6,0-6.4-4.8c-0.4-5.2,9.3-4.8,9.3-4.8l6.8,0C83.2,25.4,84.3,35.2,73.4,35z"
+                    />
+                </g>
+              </g>
+              <polygon points="85.9,11.6 92.9,11.6 103.1,32 113.4,11.6 119.7,11.6 101.2,48 94.4,48 99.8,37.9  "/>
+              <g>
+                <path d="M122.1,13.1v-0.8h-0.2V12h0.2v-0.4h0.4V12h0.5v0.3h-0.5V13c0,0.1,0.1,0.2,0.2,0.2c0.1,0,0.2,0,0.3,0v0.3
+                  c-0.1,0-0.2,0.1-0.4,0.1C122.3,13.5,122.1,13.4,122.1,13.1z"/>
+                <path d="M123.4,12h0.4v0.2c0.1-0.1,0.3-0.2,0.6-0.2c0.3,0,0.5,0.1,0.5,0.3c0.1-0.2,0.3-0.3,0.6-0.3c0.4,0,0.6,0.2,0.6,0.5v0.9
+                  h-0.4v-0.8c0-0.2-0.1-0.4-0.4-0.4c-0.2,0-0.4,0.1-0.4,0.4v0.8h-0.4v-0.8c0-0.2-0.1-0.3-0.4-0.3c-0.2,0-0.4,0.1-0.4,0.4v0.8h-0.4
+                  V12z"/>
+              </g>
+            </g>
+            </svg>
+
+          )}
+        </theme-observer>
+      )}
+    </element>
+
+    <element id="doc-question-info">
+      {({ id, title, description, image, type }) => (
+        <theme-observer>
+          {({ css_styles: {
+            question,
+            questionTitle,
+            questionDescription,
+            questionType,
+            questionInfo
+          } }) => [
+            <div className={question}>
+              <doc-logo/>
+              {title ? (
+                <h1 className={questionTitle}>
+                  <qzzr-translate>{title}</qzzr-translate>
+                </h1>
+              ) : null}
+              {description ? (
+                <div className={questionDescription}>
+                  <qzzr-translate>{description}</qzzr-translate>
+                </div>
+              ) : null}
+              {type ? (
+                <h6 className={questionType}>
+                  <qzzr-translate>{type}</qzzr-translate>
+                </h6>
+              ) : null}
+              {image ? (
+                <qzzr-image
+                  style={{
+                    marginTop: '12px',
+                    width: '100%',
+                  }}
+                  src={image.path}
+                  ratio={image.ratio}
+                />
+              ) : null}
+              <doc-background />
+            </div>,
+          ]}
+        </theme-observer>
+      )}
+    </element>
+
+    <element id="doc-categorical">
+      {(
+        {
+          columnCount,
+          description,
+          hideLabels,
+          id,
+          limit,
+          options,
+          selectMultiple,
+          shuffleOptions,
+          title,
+        },
+        _,
+        { isCurrentState, behaviors },
+      ) => (
+        <theme-observer>
+          {({
+            css_styles: {
+              answerItemImageLabel,
+              answerItemImageLabelIsActive,
+              answerItemText,
+              answerItemTextLabel,
+              button,
+              imageOption,
+              imageOptionComponent,
+              imageOptionImage,
+              textAnswer,
+              textAnswerMixed,
+              textAnswerSubmit,
+              answerWrapper,
+              optionGroupPrompt,
+              textAnswerSelectable
+            },
+          }) => (
+
+            <qzzr-form
+              action="submit"
+              className={answerWrapper}
+              behaviors={selectMultiple ? [] : [behaviors.submitOnSelect()]}>
+                <fieldset
+                  style={{
+                    border: 'none',
+                    margin: '0',
+                    padding: '0',
+                    width: '100%',
+                  }}>
+                  <legend
+                    style={{
+                      visibility: 'hidden',
+                      height: '0',
+                      margin: '0',
+                    }}>
+                    <qzzr-translate>{title}</qzzr-translate>
+                    <qzzr-translate>{description}</qzzr-translate>
+                  </legend>
+                  <qzzr-option-group-prompt
+                    style={{
+                      'max-width': 'inherit',
+                    }}
+                    columnCount={columnCount}
+                    isMultiple={selectMultiple}
+                    isShuffled={shuffleOptions}
+                    limit={limit}
+                    theme={{
+                      list: optionGroupPrompt
+                    }}
+                    name="response">
+                    {options.map(
+                      ({
+                        key: optionKey,
+                        image,
+                        label,
+                        invertIcon,
+                        is_correct,
+                        mixedItem,
+                      }) =>
+                        image && image.path ? (
+                          <qzzr-option-image
+                            invertIcon={invertIcon}
+                            key={optionKey}
+                            ratio={image.ratio}
+                            shadeIcon={false}
+                            ripple={false}
+                            icon={ selectMultiple ? undefined : null }
+                            theme={{
+                              imageOption,
+                              component: imageOptionComponent,
+                              label: answerItemImageLabel,
+                              labelIsActive: answerItemImageLabelIsActive,
+                              submit: textAnswerSubmit,
+                              image: imageOptionImage
+                            }}
+                            submitButton={<doc-option-submit-button />}
+                            src={image.path}>
+                            { !hideLabels && label ? <qzzr-translate>{label}</qzzr-translate> : null }
+                          </qzzr-option-image>
+                        ) : (
+                          <qzzr-option-text
+                            invertIcon={invertIcon}
+                            key={optionKey}
+                            leftIcon={null}
+                            ripple={false}
+                            submitButton={<doc-option-submit-button />}
+                            theme={{
+                              textOption: [textAnswer, mixedItem ? textAnswerMixed : ''].join(' '),
+                              itemText: answerItemText,
+                              itemTextLabel: answerItemTextLabel,
+                              submit: textAnswerSubmit,
+                              itemSelectable: textAnswerSelectable,
+                            }}>
+                            { !hideLabels && label ? <qzzr-translate>{label}</qzzr-translate> : null }
+                          </qzzr-option-text>
+                        ),
+                    )}
+                  </qzzr-option-group-prompt>
+                </fieldset>
+                {
+                  selectMultiple ? (
+                    <qzzr-form-observer prompts={['response']}>
+                      {
+                        (form, { value }) => (
+                          <rtb-button-prompt
+                            ripple={ false }
+                            primary
+                            disabled={ !value || !value.size }
+                            theme={{
+                              primary: button,
+                            }}>
+                            <qzzr-translate>{{ en: "Submit" }}</qzzr-translate>
+                          </rtb-button-prompt>
+                        )
+                      }
+                    </qzzr-form-observer>
+                  ) : null
+                }
+            </qzzr-form>
+          )}
+        </theme-observer>
+      )}
+    </element>
+
+    <element id="doc-stack">
+      {({
+        children,
+        leftButtonLabel,
+        rightButtonLabel,
+        remainingLabel,
+        leftDragIcon,
+        rightDragIcon,
+        leftButtonIcon,
+        rightButtonIcon,
+      }) => (
+        <theme-observer>
+          {({
+            css_styles: {
+              stackItem,
+              stackContainer,
+              stackButton,
+              stackWrapper,
+              stackContent
+            },
+          }) => (
+            <qzzr-form className={stackWrapper} action="submit" key="stack_form">
+              <div className={stackContent}>
+                <qzzr-stack-prompt
+                  name="response"
+                  theme={{
+                    stack: stackContainer,
+                    item: stackItem,
+                  }}
+                  hoverIconRight={rightDragIcon}
+                  hoverIconLeft={leftDragIcon}>
+                  {children}
+                </qzzr-stack-prompt>
+                <qzzr-form-observer prompts={['response']}>
+                  {({ meta }, { name, set, remaining }) => (
+                    <div
+                      style={{
+                        flexShrink: '0',
+                        justifyContent: 'center',
+                        display: 'flex',
+                        flexDirection: 'row',
+                        maxWidth: '600px',
+                        width: '100%',
+                      }}>
+                      <div
+                        style={{
+                          margin: '24px 0',
+                        }}>
+                        <rtb-button
+                          theme={{
+                            button: stackButton,
+                          }}
+                          onClick={function() {
+                            return set(false);
+                          }}
+                          icon={leftButtonIcon}
+                          label={leftButtonLabel}
+                          floating={!leftButtonLabel}
+                          ripple={false}
+                          primary={true}
+                        />
+                      </div>
+                      {remainingLabel ? (
+                        <qzzr-container
+                          question={true}
+                          row={true}
+                          style={{
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            margin: '24px',
+                          }}>
+                          <rtb-font-icon
+                            value="layers"
+                            style={{
+                              color: 'white',
+                            }}
+                          />
+                          <qzzr-text
+                            mediumLarge={true}
+                            style={{
+                              opacity: '0.7',
+                              marginLeft: '6px',
+                              display: 'block',
+                              textAlign: 'center',
+                            }}>
+                            <qzzr-translate
+                              data={{
+                                count: remaining,
+                              }}>
+                              {remainingLabel}
+                            </qzzr-translate>
+                          </qzzr-text>
+                        </qzzr-container>
+                      ) : null}
+                      <div
+                        style={{
+                          margin: '24px',
+                        }}>
+                        <rtb-button
+                          theme={{
+                            button: stackButton,
+                          }}
+                          onClick={function() {
+                            return set(true);
+                          }}
+                          icon={rightButtonIcon}
+                          label={rightButtonLabel}
+                          floating={!rightButtonLabel}
+                          ripple={false}
+                          primary={true}
+                        />
+                      </div>
+                    </div>
+                  )}
+                </qzzr-form-observer>
+              </div>
+            </qzzr-form>
+          )}
+        </theme-observer>
+      )}
+    </element>
+
+    <element id="doc-stack-card">
+      {({ id, image, label }) => (
+        <theme-observer key={id}>
+          {({ stackCard }) => (
+            <rtb-card
+              theme={{
+                card: stackCard,
+              }}
+              raised={true}>
+              {image && image.path ? (
+                <qzzr-image ratio={image.ratio} src={image.path} />
+              ) : null}
+              {label ? (
+                <rtb-card-title>
+                  <qzzr-translate>{label}</qzzr-translate>
+                </rtb-card-title>
+              ) : null}
+            </rtb-card>
+          )}
+        </theme-observer>
+      )}
+    </element>
+
+    <element id="doc-result">
+      {({ id, title, description, image }, { outcomeTitles, _tg }, { _raise }) => (
+        <theme-observer>
+          {({ css_styles: {
+            result,
+            resultText,
+            resultTextTitle,
+            resultTextSubtitle,
+            resultTextDescription,
+            resultFigure,
+            resultFigureImage,
+            button,
+            arrowIcon,
+            resultSheet
+          } }) => (
+            <section className={result}>
+              <section className={resultText}>
+                <doc-logo/>
+                <h6 className={resultTextSubtitle}>
+                  <qzzr-translate>
+                    {{ en: 'Your classic toy is:' }}
+                  </qzzr-translate>
+                </h6>
+
+                <h1 className={resultTextTitle}>
+                  {title ? (
+                    <qzzr-translate>{title}</qzzr-translate>
+                  ) : null}
+                </h1>
+
+                <div className={resultTextDescription}>
+                  {description ? (
+                    <qzzr-translate>{description}</qzzr-translate>
+                  ) : null}
+                </div>
+
+                {/*
+                <ol className={resultSheet}>
+                  {
+                    _tg.map(i => <li key={i}>{outcomeTitles[i]}</li>)
+                  }
+                </ol>
+                */}
+
+                <button className={button} onClick={() => _raise('restart')}>
+                  <qzzr-translate>
+                    {{ en: 'Restart Quiz' }}
+                  </qzzr-translate>
+                  <i className={arrowIcon}>
+                  </i>
+                </button>
+              </section>
+              <figure className={resultFigure} style={{
+                backgroundImage: 'url(' + image.path + ')'
+              }}>
+              </figure>
+            </section>
+          )}
+        </theme-observer>
+      )}
+    </element>
+
+    <style id="css_styles">
+      {`
+        @font-face {
+          font-family:"Market Sans";
+          src:url('https://ir.agstatic.com/cr/v/c1/market-sans/v1.0/MarketSans-Regular-WebS.eot');
+          src:url('https://ir.agstatic.com/cr/v/c1/market-sans/v1.0/MarketSans-Regular-WebS.eot?#iefix') format('embedded-opentype'),url('https://ir.agstatic.com/cr/v/c1/market-sans/v1.0/MarketSans-Regular-WebS.woff2') format('woff2'),url('https://ir.agstatic.com/cr/v/c1/market-sans/v1.0/MarketSans-Regular-WebS.woff') format('woff'),url('https://ir.agstatic.com/cr/v/c1/market-sans/v1.0/MarketSans-Regular-WebS.ttf') format('truetype'),url('https://ir.agstatic.com/cr/v/c1/market-sans/v1.0/MarketSans-Regular-WebS.svg#MarketSans-Regular-WebS') format('svg');
+          font-weight:normal;
+          font-style:normal;
+          font-display:optional}@font-face{font-family:"Market Sans";
+          src:url('https://ir.agstatic.com/cr/v/c1/market-sans/v1.0/MarketSans-SemiBold-WebS.eot');
+          src:url('https://ir.agstatic.com/cr/v/c1/market-sans/v1.0/MarketSans-SemiBold-WebS.eot?#iefix') format('embedded-opentype'),url('https://ir.agstatic.com/cr/v/c1/market-sans/v1.0/MarketSans-SemiBold-WebS.woff2') format('woff2'),url('https://ir.agstatic.com/cr/v/c1/market-sans/v1.0/MarketSans-SemiBold-WebS.woff') format('woff'),url('https://ir.agstatic.com/cr/v/c1/market-sans/v1.0/MarketSans-SemiBold-WebS.ttf') format('truetype'),url('https://ir.agstatic.com/cr/v/c1/market-sans/v1.0/MarketSans-SemiBold-WebS.svg#MarketSans-SemiBold-WebS') format('svg');
+          font-weight:bold;
+          font-style:normal;
+          font-display:optional;
+        }
+
+        :root {
+          --quiz-background: transparent;
+          --quiz-min-height: 540px;
+        }
+
+        html, body {
+          font-family: "Market Sans";
+        }
+
+        .quizBackground {
+          background: var(--quiz-background);
+          height: auto;
+          min-height: var(--quiz-min-height);
+          width: 100%;
+        }
+
+        .cover {
+          color: #fff;
+          min-height: 100vh;
+          width: 100vw;
+          position: relative;
+          background: #000;
+          overflow: hidden;
+        }
+
+        @keyframes cover {
+          0% {
+            left: 0%;
+          }
+          10% {
+            left: 0;
+          }
+          12% {
+            left: -100vw;
+          }
+          23% {
+            left: -100vw;
+          }
+          25% {
+            left: -200vw;
+          }
+          35% {
+            left: -200vw;
+          }
+          37% {
+            left: -300vw;
+          }
+          48% {
+            left: -300vw;
+          }
+          50% {
+            left: -400vw;
+          }
+          60% {
+            left: -400vw;
+          }
+          62% {
+            left: -500vw;
+          }
+          73% {
+            left: -500vw;
+          }
+          75% {
+            left: -600vw;
+          }
+          85% {
+            left: -600vw;
+          }
+          87% {
+            left: -700vw;
+          }
+          100% {
+            left: -700vw;
+          }
+        }
+
+        .coverSlides {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          top: 0;
+          display: flex;
+          animation: 20s linear 1s cover infinite;
+          opacity: .8;
+        }
+
+        .coverSlide {
+          background-size: cover;
+          background-position: 68% center;
+          margin: 0;
+          width: 100vw;
+          height: 100vh;
+          flex-shrink: 0;
+          flex-grow: 0;
+        }
+
+        .coverContent {
+          align-items: flex-start;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          min-height: 100vh;
+          padding: calc(24px + 8.33333333%);
+          position: relative;
+          z-index: 2;
+
+          @media (max-width: 1100px) {
+            padding: calc(24px + 5%);
+          }
+
+          @media (max-width: 900px) {
+            padding: calc(24px + 2.5%);
+            opacity: .8;
+          }
+        }
+
+        .sectionWrapper {
+          display: flex;
+          align-items: stretch;
+          width: 100%;
+
+          @media (max-width: 780px) {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+          }
+        }
+
+        .question,
+        .resultText {
+          align-items: flex-start;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          min-height: 100vh;
+          padding: calc(24px + 8.33333333%);
+          color: #fff;
+          background: #161669;
+          position: fixed;
+          left: 0;
+          right: 50%;
+          top: 0;
+          bottom: 0;
+          z-index: 0;
+
+          @media (max-width: 1100px) {
+            padding: calc(24px + 5%);
+          }
+
+          @media (max-width: 900px) {
+            padding: calc(24px + 2.5%);
+          }
+
+          @media (max-width: 780px) {
+            position: relative;
+            left: auto;
+            right: auto;
+            top: auto;
+            bottom: auto;
+            min-height: 0;
+            flex-grow: 100000;
+          }
+        }
+
+        .questionTitle,
+        .resultTextTitle {
+          font-size: 60px;
+          line-height: 1.2em;
+          margin: 10vh 0;
+          flex-grow: 10000;
+
+          @media (max-width: 900px) {
+            font-size: 48px;
+          }
+
+          @media (max-width: 700px) {
+            font-size: 36px;
+          }
+        }
+
+        .questionTitle {
+          font-size: 48px;
+
+          @media (max-width: 700px) {
+            font-size: 36px;
+          }
+
+          @media (max-width: 600px) {
+            font-size: 24px;
+            margin: 36px 0 0;
+          }
+        }
+
+        .resultTextSubtitle {
+          font-size: 18px;
+          margin: 36px 0 0 0;
+        }
+
+        .resultTextTitle {
+          margin: 12px 0 24px;
+        }
+
+        .questionType,
+        .resultTextDescription {
+          font-size: 18px;
+          line-height: 1em;
+          font-weight: normal;
+          margin: 0;
+          flex-shrink: 0;
+        }
+
+        .resultTextDescription {
+          line-height: 1.5em;
+          margin-bottom: 36px;
+        }
+
+        .coverTitle {
+          color: #fff;
+          font-size: 96px;
+          font-weight: bold;
+          line-height: 1em;
+          margin: 24px 0;
+          max-width: 70%;
+
+          @media (max-width: 780px) {
+            font-size: 48px;
+          }
+        }
+
+        .logo {
+          background-size: cover;
+          height: 48px;
+          margin: 0;
+          width: 127px;
+          flex-shrink: 0;
+          fill: currentColor;
+        }
+
+        .button,
+        .startButton {
+          border: 1px solid;
+          border-color: inherit;
+          color: inherit;
+          font-size: 13px;
+          line-height: 1.1em;
+          padding: 15px;
+          text-decoration: none;
+          background: transparent;
+          display: block;
+          font-family:"Market Sans";
+          outline: none;
+        }
+
+        .startButton {
+          font-size: 18px;
+          font-weight: 300;
+          padding: 19px 19px 18px;
+          box-shadow: 1px 1px 10px rgba(0,0,0,.5);
+        }
+
+        .stackButton {
+          color: #4365F8 !important;
+        }
+
+        .arrowIcon {
+          position: relative;
+          width: 8px;
+          height: 8px;
+          display: inline-block;
+          margin-left: 8px;
+
+          &:before,
+          &:after {
+            content: '';
+            border: 1px solid;
+            border-color: inherit;
+            border-left: none;
+            border-bottom: none;
+            color: inherit;
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+          }
+
+          &:before {
+            transform: rotate(45deg);
+            margin-left: -1px;
+            position: absolute;
+          }
+
+          &:after {
+            border-right: none;
+            height: auto;
+            top: 50%;
+          }
+        }
+
+        .quizWrapper {
+          display: flex;
+        }
+
+        .answerWrapper,
+        .stackWrapper {
+          margin: 0 0 0 50%;
+          width: 50%;
+          background: #161669;
+          min-height: 100vh;
+
+          @media (max-width: 780px) {
+            width: auto;
+            margin: 0;
+            min-height: 0;
+            flex-shrink: 0;
+          }
+        }
+
+        .stackWrapper {
+          background: #2E27D5;
+        }
+
+        .resultSheet {
+          display:none;
+          position: fixed;
+          left: 0;
+          top: 90%;
+          padding: 50px;
+          width: 400px;
+          margin: 0;
+          &:hover {
+            top: 0;
+            bottom: 0;
+            background: black;
+            color: white;
+          }
+        }
+
+        .textAnswer {
+          width: 50%;
+          align-self: center;
+          position: relative;
+          margin-bottom: -1px;
+          background: #2E27D5;
+          height: 25%;
+          font-size: 24px;
+        }
+
+        .textAnswer:first-child:nth-last-child(2),
+        .textAnswer:first-child:nth-last-child(2) ~ .textAnswer {
+          height: 50% !important;
+           @media (max-width: 780px) {
+            width: 50% !important;
+          }
+        }
+
+        .textAnswerSelectable {
+          background: transparent !important;
+          &:hover {
+            background: rgba(0,0,0,.1) !important;
+          }
+        }
+
+        .answerItemText {
+          color: #fff;
+          width: 100%;
+          text-align: center;
+          min-height: 100%;
+          &:after {
+            display: none;
+          }
+        }
+
+
+        .textAnswer:nth-child(2) {
+            background: #75D3C4;
+        }
+
+        .textAnswer:nth-child(3) {
+            background: #96EEB1;
+
+          .answerItemText {
+            color: #161669;
+          }
+        }
+
+        .answerItemTextLabel {
+          width: 100%;
+          text-align: center;
+          padding: 48px 24px;
+        }
+
+        .stackWrapper {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .stackContent {
+          padding: 24px;
+          max-width: 600px;
+          width: 50%;
+        }
+
+        .optionGroupPrompt {
+          padding: 0;
+          display: flex;
+          min-height: 100vh;
+
+          @media (max-width: 780px) {
+            min-height: 0;
+            flex-shrink: 0;
+            max-width: inherit;
+          }
+        }
+
+        .answerItemImageLabel {
+          position: absolute !important;
+          top: 0;
+          left: 0;
+          right: 0;
+          text-align: left;
+          color: #fff;
+          border: none;
+          padding: 20px 24px;
+          font-size: 18px;
+          z-index: 2;
+        }
+
+        .textAnswerSubmit {
+          position: absolute !important;
+        }
+
+        .imageOption {
+          width: 50% !important;
+          float: left;
+        }
+
+        .imageOption:first-child:nth-last-child(2),
+        .imageOption:first-child:nth-last-child(2) ~ .imageOption,
+        .imageOption:first-child:nth-last-child(3),
+        .imageOption:first-child:nth-last-child(3) ~ .imageOption {
+            width: 100% !important;
+        }
+
+        .imageOption:first-child:nth-last-child(2) *,
+        .imageOption:first-child:nth-last-child(2) ~ .imageOption *,
+        .imageOption:first-child:nth-last-child(3) *,
+        .imageOption:first-child:nth-last-child(3) ~ .imageOption * {
+            position: static;
+        }
+
+        .imageOption:first-child:nth-last-child(2) .imageOptionImage,
+        .imageOption:first-child:nth-last-child(2) ~ .imageOption .imageOptionImage,
+        .imageOption:first-child:nth-last-child(3) .imageOptionImage,
+        .imageOption:first-child:nth-last-child(3) ~ .imageOption .imageOptionImage {
+          padding: 0 !important;
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          top: 0;
+
+          @media (max-width: 780px) {
+            position: relative;
+            padding-bottom: 50% !important;
+          }
+        }
+
+        .imageOptionComponent {
+          padding: 0 !important;
+          position: relative;
+          &:after {
+            background: linear-gradient(135deg, rgba(0,0,0,0.25) 0%,rgba(0,0,0,0) 100%);
+            display: block;
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+          }
+        }
+
+        .result {
+          background: #5532B2;
+          color: #D2F3FF;
+          min-height: 100vh;
+          width: 100vw;
+          display: flex;
+
+          @media (max-width: 780px) {
+            display: block;
+          }
+        }
+
+        .resultText {
+          background: transparent;
+          color: inherit;
+          position: relative;
+          left: auto;
+          right: auto;
+          top: auto;
+          bottom: auto;
+          width: 50%;
+
+          @media (max-width: 780px) {
+            width: 100%;
+            min-height: 0;
+          }
+        }
+
+        .resultFigure {
+          background: #fff;
+          margin: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 50%;
+          position: fixed;
+          left: 50%;
+          bottom: 0;
+          top: 0;
+          right: 0;
+          background-size: cover;
+          background-position: top center;
+
+          @media (max-width: 780px) {
+            position: relative;
+            left: auto;
+            right: auto;
+            bottom: auto;
+            top: auto;
+            width: 100%;
+            height: 75%;
+          }
+        }
+
+       .agStyleContainer{
+          display: flex;
+          padding: 0;
+          margin: 0;
+          flex-wrap:wrap-reverse;
+          width:280px;
+          align-items:flex-end;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          z-index: -1;
+
+          @media (max-width: 780px) {
+            top: auto;
+            left: auto;
+            right: 0;
+            flex-direction: row-reverse;
+            width: 210px;
+          }
+
+          @media (max-width: 600px) {
+            bottom: auto;
+            top: 0;
+            flex-wrap: wrap;
+          }
+
+        }
+
+        .agStyleblock{
+          width:20%;
+          height:2;
+          display:block;
+          background-color:#161669;
+          width: 40px;
+          height: 40px;
+
+          @media (max-width: 780px) {
+            width: 30px;
+            height: 30px;
+          }
+
+        }
+
+        .blue1{background-color:#161669;}
+        .blue2{background-color:#D2F3FF;}
+        .blue3{background-color:#2E27D5;}
+        .green1{background-color:#75D3C4;}
+        .green2{background-color:#96EEB1;}
+        .green3{background-color:#4C898A;}
+        .purple1{background-color:#5532B2;}
+        .purple2{background-color:#3B0075;}
+        .yellow1{background-color:#FDEF7E;}
+        .yellow2{background-color:#FFF8AF;}
+
+      `}
+    </style>
+
+    <fragment>
+      {({ children }) => (
+        <theme-default
+          qzzr-option-image-active-focused-icon-shade-color="#fff"
+          qzzr-option-image-focused-icon-shade-color="#fff"
+          qzzr-option-image-focused-image-border-color="#fff"
+          qzzr-option-image-image-focused-border-color="#fff"
+          color-primary="#fff"
+        >
+          <theme-observer>
+            {({ css_styles: { quizWrapper } }) => (
+              <div className={quizWrapper}>
+                {children}
+              </div>
+            )}
+          </theme-observer>
+        </theme-default>
+      )}
+    </fragment>
+
+    <state id='start'>
+      <onentry>
+        <assign location="decade_70s" expr={() => 0} />
+        <assign location="decade_80s" expr={() => 0} />
+        <assign location="decade_90s" expr={() => 0} />
+        <assign location="toy_gender_preference_masculine" expr={() => 0} />
+        <assign location="toy_gender_preference_feminine" expr={() => 0} />
+        <assign location="toy_gender_preference_neutral" expr={() => 0} />
+        <assign location="openness_creativity" expr={() => 0} />
+        <assign location="openness_intellect" expr={() => 0} />
+        <assign location="conscientiousness_orderliness" expr={() => 0} />
+        <assign location="conscientiousness_industriousness" expr={() => 0} />
+        <assign location="extraversion_enthusiasm" expr={() => 0} />
+        <assign location="extraversion_assertiveness" expr={() => 0} />
+        <assign location="agreeableness_politeness" expr={() => 0} />
+        <assign location="agreeableness_compassion" expr={() => 0} />
+        <assign location="neuroticism_withdrawal" expr={() => 0} />
+        <assign location="neuroticism_volatility" expr={() => 0} />
+        <assign location="category_dolls" expr={() => 0} />
+        <assign location="category_action_figures" expr={() => 0} />
+        <assign location="category_games" expr={() => 0} />
+        <assign location="category_sports" expr={() => 0} />
+        <assign location="category_stuffed_animals" expr={() => 0} />
+        <assign location="category_markers" expr={() => 0} />
+        <assign location="category_lego" expr={() => 0} />
+        <assign location="toyGenderPreferenceStackLiked" expr={() => []} />
+        <assign location="toyGenderPreferenceStackFavorite" expr={() => null} />
+      </onentry>
+      <transition event="start" target="toy_gender_preference" />
+      <fragment>
+        <doc-cover />
+      </fragment>
+    </state>
+    <state id="toy_gender_preference">
+      <onevent event="submit">
+        <assign
+          location="toyGenderPreferenceStackLiked"
+          expr={({ _event, toyGenderPreferenceStack }) =>
+            toyGenderPreferenceStack.filter(({ key }) =>
+              _event.data.get('response').get(key),
+            )}
+        />
+      </onevent>
+      <onresponse type="Map<boolean>">
+        <option id="action_figures">
+          <assign
+            location="toy_gender_preference_masculine"
+            expr={({ toy_gender_preference_masculine }) =>
+              toy_gender_preference_masculine + 1}
+          />
+          <assign
+            location="neuroticism_volatility"
+            expr={({ neuroticism_volatility }) => neuroticism_volatility + 1}
+          />
+          <assign
+            location="category_action_figures"
+            expr={({ category_action_figures }) =>
+              category_action_figures + 100}
+          />
+        </option>
+        <option id="dolls">
+          <assign
+            location="toy_gender_preference_feminine"
+            expr={({ toy_gender_preference_feminine }) =>
+              toy_gender_preference_feminine + 1}
+          />
+          <assign
+            location="agreeableness_compassion"
+            expr={({ agreeableness_compassion }) =>
+              agreeableness_compassion + 1}
+          />
+          <assign
+            location="category_dolls"
+            expr={({ category_dolls }) => category_dolls + 100}
+          />
+        </option>
+        <option id="lego">
+          <assign
+            location="toy_gender_preference_neutral"
+            expr={({ toy_gender_preference_neutral }) =>
+              toy_gender_preference_neutral + 1}
+          />
+          <assign
+            location="openness_intellect"
+            expr={({ openness_intellect }) => openness_intellect + 1}
+          />
+          <assign
+            location="category_lego"
+            expr={({ category_lego }) => category_lego + 100}
+          />
+        </option>
+        <option id="sports">
+          <assign
+            location="toy_gender_preference_neutral"
+            expr={({ toy_gender_preference_neutral }) =>
+              toy_gender_preference_neutral + 1}
+          />
+          <assign
+            location="extraversion_assertiveness"
+            expr={({ extraversion_assertiveness }) =>
+              extraversion_assertiveness + 1}
+          />
+          <assign
+            location="category_sports"
+            expr={({ category_sports }) => category_sports + 100}
+          />
+        </option>
+        <option id="games">
+          <assign
+            location="toy_gender_preference_neutral"
+            expr={({ toy_gender_preference_neutral }) =>
+              toy_gender_preference_neutral + 1}
+          />
+          <assign
+            location="openness_intellect"
+            expr={({ openness_intellect }) => openness_intellect + 1}
+          />
+          <assign
+            location="category_games"
+            expr={({ category_games }) => category_games + 100}
+          />
+        </option>
+        <option id="markers">
+          <assign
+            location="toy_gender_preference_neutral"
+            expr={({ toy_gender_preference_neutral }) =>
+              toy_gender_preference_neutral + 1}
+          />
+          <assign
+            location="openness_creativity"
+            expr={({ openness_creativity }) => openness_creativity + 1}
+          />
+          <assign
+            location="category_markers"
+            expr={({ category_markers }) => category_markers + 100}
+          />
+        </option>
+        <option id="stuffed_animals">
+          <assign
+            location="toy_gender_preference_neutral"
+            expr={({ toy_gender_preference_neutral }) =>
+              toy_gender_preference_neutral + 1}
+          />
+          <assign
+            location="agreeableness_compassion"
+            expr={({ agreeableness_compassion }) =>
+              agreeableness_compassion + 1}
+          />
+          <assign
+            location="category_stuffed_animals"
+            expr={({ category_stuffed_animals }) =>
+              category_stuffed_animals + 100}
+          />
+        </option>
+      </onresponse>
+      <transition event="submit" target="movie_preference" />
+      <fragment>
+        {(_, { toyGenderPreferenceStack }, { utils: { shuffle } }) => (
+          <theme-observer>
+            {({ css_styles: { sectionWrapper } }) => (
+              <section className={sectionWrapper}>
+                <doc-question-info
+                  title={{
+                    en: 'Which toys did you like playing with as a kid?',
+                  }}
+                />
+                <doc-stack
+                    id="toy_gender_preferenceStack"
+                    leftDragIcon="thumb_down"
+                    rightDragIcon="thumb_up"
+                    leftButtonIcon="thumb_down"
+                    rightButtonIcon="thumb_up">
+                  {shuffle(
+                    toyGenderPreferenceStack,
+                    +new Date(),
+                  ).map(({ key, label, image = {} }) => (
+                    <doc-stack-card
+                      key={key}
+                      id={key}
+                      image={image}
+                      label={label}
+                    />
+                  ))}
+                </doc-stack>
+              </section>
+            )}
+          </theme-observer>
+        )}
+      </fragment>
+    </state>
+    <state id="movie_preference">
+      <onevent event="submit" />
+      <onresponse>
+        <option id="action">
+          <assign
+            location="neuroticism_volatility"
+            expr={({ neuroticism_volatility }) => neuroticism_volatility + 1}
+          />
+          <assign
+            location="conscientiousness_industriousness"
+            expr={({ conscientiousness_industriousness }) =>
+              conscientiousness_industriousness + 1}
+          />
+        </option>
+        <option id="romance">
+          <assign
+            location="agreeableness_compassion"
+            expr={({ agreeableness_compassion }) =>
+              agreeableness_compassion + 1}
+          />
+        </option>
+        <option id="sci_fi_fantasy">
+          <assign
+            location="openness_creativity"
+            expr={({ openness_creativity }) => openness_creativity + 1}
+          />
+          <assign
+            location="neuroticism_withdrawal"
+            expr={({ neuroticism_withdrawal }) => neuroticism_withdrawal + 1}
+          />
+          <assign
+            location="openness_intellect"
+            expr={({ openness_intellect }) => openness_intellect + 1}
+          />
+        </option>
+        <option id="horror_thriller">
+          <assign
+            location="neuroticism_volatility"
+            expr={({ neuroticism_volatility }) => neuroticism_volatility + 1}
+          />
+          <assign
+            location="conscientiousness_orderliness"
+            expr={({ conscientiousness_orderliness }) =>
+              conscientiousness_orderliness + -1}
+          />
+        </option>
+        <option id="true_crime">
+          <assign
+            location="openness_intellect"
+            expr={({ openness_intellect }) => openness_intellect + 1}
+          />
+          <assign
+            location="neuroticism_volatility"
+            expr={({ neuroticism_volatility }) => neuroticism_volatility + 1}
+          />
+          <assign
+            location="neuroticism_withdrawal"
+            expr={({ neuroticism_withdrawal }) => neuroticism_withdrawal + -1}
+          />
+          <assign
+            location="extraversion_assertiveness"
+            expr={({ extraversion_assertiveness }) =>
+              extraversion_assertiveness + 1}
+          />
+        </option>
+        <option id="superhero">
+          <assign
+            location="conscientiousness_industriousness"
+            expr={({ conscientiousness_industriousness }) =>
+              conscientiousness_industriousness + 1}
+          />
+          <assign
+            location="conscientiousness_orderliness"
+            expr={({ conscientiousness_orderliness }) =>
+              conscientiousness_orderliness + 1}
+          />
+          <assign
+            location="agreeableness_politeness"
+            expr={({ agreeableness_politeness }) =>
+              agreeableness_politeness + 1}
+          />
+          <assign
+            location="extraversion_assertiveness"
+            expr={({ extraversion_assertiveness }) =>
+              extraversion_assertiveness + 1}
+          />
+        </option>
+        <option id="drama">
+          <assign
+            location="openness_intellect"
+            expr={({ openness_intellect }) => openness_intellect + 1}
+          />
+          <assign
+            location="agreeableness_politeness"
+            expr={({ agreeableness_politeness }) =>
+              agreeableness_politeness + 1}
+          />
+          <assign
+            location="extraversion_enthusiasm"
+            expr={({ extraversion_enthusiasm }) => extraversion_enthusiasm + 1}
+          />
+        </option>
+        <option id="comedy">
+          <assign
+            location="openness_creativity"
+            expr={({ openness_creativity }) => openness_creativity + 1}
+          />
+          <assign
+            location="agreeableness_politeness"
+            expr={({ agreeableness_politeness }) =>
+              agreeableness_politeness + -1}
+          />
+          <assign
+            location="conscientiousness_orderliness"
+            expr={({ conscientiousness_orderliness }) =>
+              conscientiousness_orderliness + -1}
+          />
+        </option>
+      </onresponse>
+      <transition event="submit" target="favorite_school_subject" />
+      <fragment>
+        {({ children }) => (
+          <theme-observer>
+            {({ css_styles: { sectionWrapper } }) => (
+              <section className={sectionWrapper}>
+                <doc-question-info
+                  id="movie_preference_info"
+                  title={{
+                    en: 'Which of these movies do you like best?',
+                  }}
+                />
+                <doc-categorical
+                  id="movie_preference"
+                  selectMultiple={false}
+                  shuffleOptions={true}
+                  options={[
+                    {
+                      key: 'action',
+                      label: {
+                        en: 'John Wick: Chapter 2',
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/4a/53b1b95f634c8b9d19aa73a544c366/upload.jpg?fit=min&h=300&w=300',
+                        ratio: '1:1',
+                      },
+                    },
+                    {
+                      key: 'romance',
+                      label: {
+                        en: 'La La Land',
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/30/78af3de629416dbea4d8d6359ffcb9/upload.jpg?fit=min&h=300&w=300',
+                        ratio: '1:1',
+                      },
+                    },
+                    {
+                      key: 'sci_fi_fantasy',
+                      label: {
+                        en: 'Arrival',
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/6c/2bd6a129664378a60f1086700e4431/upload.jpg?fit=min&h=300&w=300',
+                        ratio: '1:1',
+                      },
+                    },
+                    {
+                      key: 'horror_thriller',
+                      label: {
+                        en: 'Get Out',
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/a6/dd2e82435f4710b7ef6357f921f28e/upload.jpg?fit=min&h=300&w=300',
+                        ratio: '1:1',
+                      },
+                    },
+                    {
+                      key: 'true_crime',
+                      label: {
+                        en: 'The Wolf of Wall Street',
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/33/992c7f05ca45f4b88311cfe7edbf18/upload.jpg?fit=min&h=300&w=300',
+                        ratio: '1:1',
+                      },
+                    },
+                    {
+                      key: 'superhero',
+                      label: {
+                        en: 'Wonder Woman',
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/f6/c8ec46c34f4663aa3ec26af9412a97/upload.jpg?fit=min&h=300&w=300',
+                        ratio: '1:1',
+                      },
+                    },
+                    {
+                      key: 'drama',
+                      label: {
+                        en: 'Lady Bird',
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/20/05cb533d3244f4bd804a3e09ab20e4/upload.jpg?fit=min&h=300&w=300',
+                        ratio: '1:1',
+                      },
+                    },
+                    {
+                      key: 'comedy',
+                      label: {
+                        en: 'Baby Driver',
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/eb/5fdc0b87f7472c98db6ff9acde016c/upload.jpg?fit=min&h=300&w=300',
+                        ratio: '1:1',
+                      },
+                    },
+                  ]}
+                />
+              </section>
+            )}
+          </theme-observer>
+        )}
+      </fragment>
+    </state>
+    <state id="favorite_school_subject">
+      <onevent event="submit" />
+      <onresponse>
+        <option id="art">
+          <assign
+            location="openness_creativity"
+            expr={({ openness_creativity }) => openness_creativity + 1}
+          />
+        </option>
+        <option id="math">
+          <assign
+            location="conscientiousness_orderliness"
+            expr={({ conscientiousness_orderliness }) =>
+              conscientiousness_orderliness + 1}
+          />
+          <assign
+            location="openness_intellect"
+            expr={({ openness_intellect }) => openness_intellect + 1}
+          />
+        </option>
+        <option id="english">
+          <assign
+            location="openness_creativity"
+            expr={({ openness_creativity }) => openness_creativity + 1}
+          />
+          <assign
+            location="agreeableness_politeness"
+            expr={({ agreeableness_politeness }) =>
+              agreeableness_politeness + 1}
+          />
+        </option>
+        <option id="phys_ed">
+          <assign
+            location="conscientiousness_industriousness"
+            expr={({ conscientiousness_industriousness }) =>
+              conscientiousness_industriousness + 1}
+          />
+          <assign
+            location="neuroticism_volatility"
+            expr={({ neuroticism_volatility }) => neuroticism_volatility + 1}
+          />
+          <assign
+            location="neuroticism_withdrawal"
+            expr={({ neuroticism_withdrawal }) => neuroticism_withdrawal + -1}
+          />
+        </option>
+        <option id="science">
+          <assign
+            location="openness_intellect"
+            expr={({ openness_intellect }) => openness_intellect + 1}
+          />
+          <assign
+            location="conscientiousness_industriousness"
+            expr={({ conscientiousness_industriousness }) =>
+              conscientiousness_industriousness + 1}
+          />
+        </option>
+        <option id="history">
+          <assign
+            location="openness_intellect"
+            expr={({ openness_intellect }) => openness_intellect + 1}
+          />
+          <assign
+            location="extraversion_assertiveness"
+            expr={({ extraversion_assertiveness }) =>
+              extraversion_assertiveness + 1}
+          />
+        </option>
+      </onresponse>
+      <transition event="submit" target="travel_preference" />
+      <fragment>
+        {({ children }) => (
+          <theme-observer>
+            {({ css_styles: { sectionWrapper } }) => (
+              <section className={sectionWrapper}>
+                <doc-question-info
+                  id="favorite_school_subject_info"
+                  title={{
+                    en: 'What was your favorite subject in school?',
+                  }}
+                />
+                <doc-categorical
+                  id="favorite_school_subject"
+                  selectMultiple={false}
+                  shuffleOptions={true}
+                  options={[
+                    {
+                      key: 'art',
+                      label: {
+                        en: 'Art',
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/a7/14b3d2097d411bb15853a76fb210b8/upload.jpg?fit=min&h=300&w=300',
+                      },
+                    },
+                    {
+                      key: 'math',
+                      label: {
+                        en: 'Math',
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/b2/6b35e0c2364c4e886166c7c6d6e3e5/upload.jpg?fit=min&h=300&w=300',
+                      },
+                    },
+                    {
+                      key: 'english',
+                      label: {
+                        en: 'English',
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/d7/1666980f3145fa8885c6c760ed4f1b/upload.jpg?fit=min&h=300&w=300',
+                      },
+                    },
+                    {
+                      key: 'phys_ed',
+                      label: {
+                        en: 'P.E.',
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/a3/19f54890434225907bcd5a5ab1613e/upload.jpg?fit=min&h=300&w=300',
+                      },
+                    },
+                    {
+                      key: 'science',
+                      label: {
+                        en: 'Science',
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/80/1607e2e9e24b699d76ba8d2f91a2a6/upload.jpg?fit=min&h=300&w=300',
+                      },
+                    },
+                    {
+                      key: 'history',
+                      label: {
+                        en: 'History/Social Studies',
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/7c/595c443d5c465487d6b956d83391fd/upload.jpg?fit=min&h=300&w=300',
+                      },
+                    },
+                  ]}
+                />
+              </section>
+            )}
+          </theme-observer>
+        )}
+      </fragment>
+    </state>
+    <state id="travel_preference">
+      <onevent event="submit" />
+      <onresponse>
+        <option id="plan">
+          <assign
+            location="conscientiousness_orderliness"
+            expr={({ conscientiousness_orderliness }) =>
+              conscientiousness_orderliness + 1}
+          />
+        </option>
+        <option id="explore">
+          <assign
+            location="openness_creativity"
+            expr={({ openness_creativity }) => openness_creativity + 1}
+          />
+        </option>
+        <option id="no_travel">
+          <assign
+            location="neuroticism_withdrawal"
+            expr={({ neuroticism_withdrawal }) => neuroticism_withdrawal + 1}
+          />
+          <assign
+            location="openness_creativity"
+            expr={({ openness_creativity }) => openness_creativity + -1}
+          />
+        </option>
+      </onresponse>
+      <transition event="submit" target="party_behavior" />
+      <fragment>
+        {({ children }) => (
+          <theme-observer>
+            {({ css_styles: { sectionWrapper } }) => (
+              <section className={sectionWrapper}>
+                <doc-question-info
+                  id="travel_preference_info"
+                  title={{
+                    en: 'When you travel, you like...',
+                  }}
+                />
+                <doc-categorical
+                  id="travel_preference"
+                  selectMultiple={false}
+                  shuffleOptions={false}
+                  options={[
+                    {
+                      key: 'plan',
+                      label: {
+                        en: 'A defined plan.',
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/35/abf09e5448456e8e43ac2b526a67fa/upload.jpg?fit=min&h=600&w=600',
+                        ratio: '2:1'
+                      },
+                    },
+                    {
+                      key: 'explore',
+                      label: {
+                        en: 'To explore freely.',
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/9b/bae66fb55847fdbeac04d308b0b39f/upload.jpg?fit=min&h=600&w=600',
+                        ratio: '2:1'
+                      },
+                    },
+                    {
+                      key: 'no_travel',
+                      label: {
+                        en: "I prefer to stay at home.",
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/27/bee3420fdf4cc698704c67d76bd7db/upload.jpg?fit=min&h=600&w=600',
+                        ratio: '2:1'
+                      },
+                    },
+                  ]}
+                />
+              </section>
+            )}
+          </theme-observer>
+        )}
+      </fragment>
+    </state>
+    <state id="party_behavior">
+      <onevent event="submit" />
+      <onresponse>
+        <option id="stick_to_walls">
+          <assign
+            location="extraversion_enthusiasm"
+            expr={({ extraversion_enthusiasm }) => extraversion_enthusiasm + -1}
+          />
+          <assign
+            location="neuroticism_withdrawal"
+            expr={({ neuroticism_withdrawal }) => neuroticism_withdrawal + 1}
+          />
+        </option>
+        <option id="meet_new_people">
+          <assign
+            location="extraversion_enthusiasm"
+            expr={({ extraversion_enthusiasm }) => extraversion_enthusiasm + 1}
+          />
+        </option>
+      </onresponse>
+      <transition event="submit" target="friends_fighting" />
+      <fragment>
+        {({ children }) => (
+          <theme-observer>
+            {({ css_styles: { sectionWrapper } }) => (
+              <section className={sectionWrapper}>
+                <doc-question-info
+                  id="party_behavior_info"
+                  title={{
+                    en: 'At a party, you...',
+                  }}
+                />
+                <doc-categorical
+                  id="party_behavior"
+                  selectMultiple={false}
+                  shuffleOptions={false}
+                  options={[
+                    {
+                      key: 'stick_to_walls',
+                      label: {
+                        en: 'Stick to the walls.',
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/a9/6d349b17b44ced9fa74539093277c7/upload.jpg?fit=min&h=600&w=600',
+                        ratio: '2:1'
+                      },
+                    },
+                    {
+                      key: 'talk_to_friends',
+                      label: {
+                        en:
+                          'Spend most of your time talking to a few close friends.',
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/b1/90c75e7998425785efd694aee071db/upload.jpg?fit=min&h=600&w=600',
+                        ratio: '2:1'
+                      },
+                    },
+                    {
+                      key: 'meet_new_people',
+                      label: {
+                        en:
+                          'Love circling the room and meeting new people.',
+                      },
+                      image: {
+                        path:
+                          'https://bmbx-images.imgix.net/ag/meet-new-people.jpg?fit=fill&h=600&w=600&blend=50000000&bm=darken',
+                        ratio: '2:1'
+                      },
+                    },
+                  ]}
+                />
+              </section>
+            )}
+          </theme-observer>
+        )}
+      </fragment>
+    </state>
+    <state id="friends_fighting">
+      <onevent event="submit" />
+      <onresponse>
+        <option id="stay_out_of_it">
+          <assign
+            location="agreeableness_politeness"
+            expr={({ agreeableness_politeness }) =>
+              agreeableness_politeness + 1}
+          />
+          <assign
+            location="extraversion_assertiveness"
+            expr={({ extraversion_assertiveness }) =>
+              extraversion_assertiveness + -1}
+          />
+          <assign
+            location="neuroticism_withdrawal"
+            expr={({ neuroticism_withdrawal }) => neuroticism_withdrawal + 1}
+          />
+        </option>
+        <option id="pick_a_side">
+          <assign
+            location="neuroticism_volatility"
+            expr={({ neuroticism_volatility }) => neuroticism_volatility + 1}
+          />
+          <assign
+            location="neuroticism_withdrawal"
+            expr={({ neuroticism_withdrawal }) => neuroticism_withdrawal + -1}
+          />
+        </option>
+        <option id="help_resolve_conflict">
+          <assign
+            location="agreeableness_compassion"
+            expr={({ agreeableness_compassion }) =>
+              agreeableness_compassion + 1}
+          />
+          <assign
+            location="extraversion_assertiveness"
+            expr={({ extraversion_assertiveness }) =>
+              extraversion_assertiveness + 1}
+          />
+          <assign
+            location="neuroticism_withdrawal"
+            expr={({ neuroticism_withdrawal }) => neuroticism_withdrawal + -1}
+          />
+        </option>
+      </onresponse>
+      <transition event="submit" target="good_grades_value" />
+      <fragment>
+        {({ children }) => (
+          <theme-observer>
+            {({ css_styles: { sectionWrapper } }) => (
+              <section className={sectionWrapper}>
+                <doc-question-info
+                  id="friends_fighting_info"
+                  title={{
+                    en: 'Your friends are fighting. What do you do?',
+                  }}
+                />
+                <doc-categorical
+                  id="friends_fighting"
+                  selectMultiple={false}
+                  shuffleOptions={true}
+                  options={[
+                    {
+                      key: 'stay_out_of_it',
+                      label: {
+                        en: 'Stay out of it',
+                      },
+                    },
+                    {
+                      key: 'pick_a_side',
+                      label: {
+                        en: 'Pick a side',
+                      },
+                    },
+                    {
+                      key: 'help_resolve_conflict',
+                      label: {
+                        en: 'Help resolve the conflict',
+                      },
+                    },
+                  ]}
+                />
+              </section>
+            )}
+          </theme-observer>
+        )}
+      </fragment>
+    </state>
+    <state id="good_grades_value">
+      <onevent event="submit" />
+      <onresponse>
+        <option id="TRUE">
+          <assign
+            location="conscientiousness_orderliness"
+            expr={({ conscientiousness_orderliness }) =>
+              conscientiousness_orderliness + 1}
+          />
+          <assign
+            location="conscientiousness_industriousness"
+            expr={({ conscientiousness_industriousness }) =>
+              conscientiousness_industriousness + 1}
+          />
+          <assign
+            location="openness_intellect"
+            expr={({ openness_intellect }) => openness_intellect + 1}
+          />
+        </option>
+        <option id="FALSE">
+          <assign
+            location="openness_creativity"
+            expr={({ openness_creativity }) => openness_creativity + 1}
+          />
+          <assign
+            location="conscientiousness_orderliness"
+            expr={({ conscientiousness_orderliness }) =>
+              conscientiousness_orderliness + -1}
+          />
+          <assign
+            location="conscientiousness_industriousness"
+            expr={({ conscientiousness_industriousness }) =>
+              conscientiousness_industriousness + -1}
+          />
+        </option>
+      </onresponse>
+      <transition event="submit" target="character_preference" />
+      <fragment>
+        {({ children }) => (
+          <theme-observer>
+            {({ css_styles: { sectionWrapper } }) => (
+              <section className={sectionWrapper}>
+                <doc-question-info
+                  id="good_grades_value_info"
+                  title={{
+                    en: 'It was important for me to get good grades in school.',
+                  }}
+                />
+                <doc-categorical
+                  id="good_grades_value"
+                  selectMultiple={false}
+                  shuffleOptions={false}
+                  options={[
+                    {
+                      key: 'TRUE',
+                      label: {
+                        en: 'True',
+                      },
+                    },
+                    {
+                      key: 'FALSE',
+                      label: {
+                        en: 'False',
+                      },
+                    },
+                  ]}
+                />
+              </section>
+            )}
+          </theme-observer>
+        )}
+      </fragment>
+    </state>
+    <state id="character_preference">
+      <onevent event="submit" />
+      <onresponse>
+        <option id="alice">
+          <assign
+            location="openness_creativity"
+            expr={({ openness_creativity }) => openness_creativity + 2}
+          />
+          <assign
+            location="openness_intellect"
+            expr={({ openness_intellect }) => openness_intellect + 2}
+          />
+        </option>
+        <option id="hermione_granger">
+          <assign
+            location="conscientiousness_orderliness"
+            expr={({ conscientiousness_orderliness }) =>
+              conscientiousness_orderliness + 2}
+          />
+          <assign
+            location="conscientiousness_industriousness"
+            expr={({ conscientiousness_industriousness }) =>
+              conscientiousness_industriousness + 2}
+          />
+        </option>
+        <option id="ferris_bueller">
+          <assign
+            location="extraversion_enthusiasm"
+            expr={({ extraversion_enthusiasm }) => extraversion_enthusiasm + 2}
+          />
+          <assign
+            location="extraversion_assertiveness"
+            expr={({ extraversion_assertiveness }) =>
+              extraversion_assertiveness + 2}
+          />
+        </option>
+        <option id="forrest_gump">
+          <assign
+            location="agreeableness_politeness"
+            expr={({ agreeableness_politeness }) =>
+              agreeableness_politeness + 2}
+          />
+          <assign
+            location="agreeableness_compassion"
+            expr={({ agreeableness_compassion }) =>
+              agreeableness_compassion + 2}
+          />
+        </option>
+        <option id="c3po">
+          <assign
+            location="neuroticism_withdrawal"
+            expr={({ neuroticism_withdrawal }) => neuroticism_withdrawal + 2}
+          />
+          <assign
+            location="neuroticism_volatility"
+            expr={({ neuroticism_volatility }) => neuroticism_volatility + 2}
+          />
+        </option>
+        <option id="scar">
+          <assign
+            location="neuroticism_volatility"
+            expr={({ neuroticism_volatility }) => neuroticism_volatility + 2}
+          />
+        </option>
+      </onresponse>
+      <transition event="submit" target="born" />
+      <fragment>
+        {({ children }) => (
+          <theme-observer>
+            {({ css_styles: { sectionWrapper } }) => (
+              <section className={sectionWrapper}>
+                <doc-question-info
+                  id="character_preference_info"
+                  title={{
+                    en: "Who's your favorite character?",
+                  }}
+                />
+                <doc-categorical
+                  id="character_preference"
+                  selectMultiple={false}
+                  shuffleOptions={true}
+                  options={[
+                    {
+                      key: 'alice',
+                      label: {
+                        en: 'Alice in Wonderland',
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/80/19727b70d1427992750a3d6b2c47a5/upload.jpg?fit=min&h=300&w=300',
+                        ratio: '1:1',
+                      },
+                    },
+                    {
+                      key: 'hermione_granger',
+                      label: {
+                        en: 'Hermione Granger',
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/8b/7b9451da7944579190308267808830/upload.jpg?fit=min&h=300&w=300',
+                        ratio: '1:1',
+                      },
+                    },
+                    {
+                      key: 'ferris_bueller',
+                      label: {
+                        en: 'Ferris Bueller',
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/c2/b4612cdabf422d8fac8c4dee75eeb9/upload.jpg?fit=min&h=300&w=300',
+                        ratio: '1:1',
+                      },
+                    },
+                    {
+                      key: 'forrest_gump',
+                      label: {
+                        en: 'Forrest Gump',
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/55/e43ed58ff64dc9b6b4652c6afe3184/upload.jpg?fit=min&h=300&w=300',
+                        ratio: '1:1',
+                      },
+                    },
+                    {
+                      key: 'c3po',
+                      label: {
+                        en: 'C-3PO',
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/c9/bf672dfa0644678205cee93589bd14/upload.jpeg?fit=min&h=300&w=300',
+                        ratio: '1:1',
+                      },
+                    },
+                    {
+                      key: 'scar',
+                      label: {
+                        en: 'Scar',
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/27/16f8c718c046f58903cdd9fd50214f/upload.jpg?fit=min&h=300&w=300',
+                        ratio: '1:1',
+                      },
+                    },
+                  ]}
+                />
+              </section>
+            )}
+          </theme-observer>
+        )}
+      </fragment>
+    </state>
+    <state id="born">
+      <onevent event="submit" />
+      <onresponse>
+        <option id="50s">
+          <assign
+            location="decade_70s"
+            expr={({ decade_70s }) => decade_70s + 1}
+          />
+        </option>
+        <option id="60s">
+          <assign
+            location="decade_70s"
+            expr={({ decade_70s }) => decade_70s + 1}
+          />
+        </option>
+        <option id="70s">
+          <assign
+            location="decade_70s"
+            expr={({ decade_70s }) => decade_70s + 1}
+          />
+        </option>
+        <option id="80s">
+          <assign
+            location="decade_80s"
+            expr={({ decade_80s }) => decade_80s + 1}
+          />
+        </option>
+        <option id="90s">
+          <assign
+            location="decade_90s"
+            expr={({ decade_90s }) => decade_90s + 1}
+          />
+        </option>
+      </onresponse>
+      <transition event="submit" target="end" />
+      <fragment>
+        {({ children }) => (
+          <theme-observer>
+            {({ css_styles: { sectionWrapper } }) => (
+              <section className={sectionWrapper}>
+                <doc-question-info
+                  id="born_info"
+                  title={{
+                    en: 'How do you identify?',
+                  }}
+                />
+                <doc-categorical
+                  id="born"
+                  selectMultiple={false}
+                  shuffleOptions={false}
+                  options={[
+                    {
+                      key: '50s',
+                      label: {
+                        en: "I'm a 50's kid",
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/ab/63bb886e0b4966a3d90af4fecd720f/upload.jpg',
+                      },
+                    },
+                    {
+                      key: '60s',
+                      label: {
+                        en: "I'm a 60's kid",
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/84/3d12bc218e4f7891a47f11d4002b60/upload.jpg?fit=min&h=300&w=300',
+                      },
+                    },
+                    {
+                      key: '70s',
+                      label: {
+                        en: "I'm a 70's kid",
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/fb/e0976efde5425b98a61eb28f70d939/upload.jpg?fit=min&h=300&w=300',
+                      },
+                    },
+                    {
+                      key: '80s',
+                      label: {
+                        en: "I'm an 80's kid",
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/a5/2702b4500146e0be87bc6cc69f41b1/upload.jpg?fit=min&h=300&w=300',
+                      },
+                    },
+                    {
+                      key: '90s',
+                      label: {
+                        en: "I'm a 90's kid",
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/85/655c26192f4eea876a051d1994e916/upload.jpg?fit=min&h=300&w=300',
+                      },
+                    },
+                    {
+                      key: 'other_age',
+                      label: {
+                        en: "Other",
+                      },
+                      image: {
+                        path:
+                          'https://movement-prod.imgix.net/uploads/c6/e761aa431e4207bc01f36a2dd05e4f/upload.jpg?fit=min&h=300&w=300',
+                      },
+                    },
+                  ]}
+                />
+              </section>
+            )}
+          </theme-observer>
+        )}
+      </fragment>
+    </state>
+    <parallel id="end">
+      <onentry />
+      <state id="persona" initial="_self">
+        <transition event="restart" target="start" />
+        <transition-group method="descending">
+          <transition
+            target="stretch_armstrong"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": 5,
+                "decade_80s": 2,
+                "decade_90s": 1,
+                "toy_gender_preference_masculine": 1,
+                "toy_gender_preference_feminine": -1000,
+                "openness_creativity": 1,
+                "extraversion_enthusiasm": 1,
+                "extraversion_assertiveness": 2,
+                "neuroticism_withdrawal": -1,
+                "neuroticism_volatility": 1,
+                "category_action_figures": 1
+              })}
+          />
+          <transition
+            target="etch_a_sketch"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": 5,
+                "decade_80s": 2,
+                "decade_90s": 1,
+                "toy_gender_preference_neutral": 1,
+                "openness_creativity": 2,
+                "openness_intellect": 1,
+                "conscientiousness_industriousness": 1,
+                "neuroticism_withdrawal": 1,
+                "neuroticism_volatility": -1,
+                "category_markers": 1,
+              })}
+          />
+          <transition
+            target="mouse_trap"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": 5,
+                "decade_80s": 2,
+                "decade_90s": 1,
+                "toy_gender_preference_neutral": 1,
+                "conscientiousness_industriousness": 2,
+                "extraversion_enthusiasm": 2,
+                "extraversion_assertiveness": 1,
+                "neuroticism_volatility": 1,
+                "category_games": 1,
+              })}
+          />
+          <transition
+            target="evel_knievel_stunt_cycle"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": 5,
+                "decade_90s": -1000,
+                "toy_gender_preference_masculine": 1,
+                "conscientiousness_industriousness": 1,
+                "extraversion_assertiveness": 1,
+                "agreeableness_politeness": -1,
+                "neuroticism_withdrawal": -3,
+                "neuroticism_volatility": 2,
+                "category_action_figures": 1,
+              })}
+          />
+          <transition
+            target="atari_2600"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": 5,
+                "decade_80s": 2,
+                "decade_90s": -1000,
+                "toy_gender_preference_neutral": 1,
+                "openness_intellect": 2,
+                "conscientiousness_industriousness": 1,
+                "neuroticism_withdrawal": 1,
+                "category_games": 1,
+              })}
+          />
+          <transition
+            target="six_million_dollar_man"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": 5,
+                "decade_90s": -1000,
+                "toy_gender_preference_masculine": 1,
+                "openness_creativity": 1,
+                "openness_intellect": 1,
+                "conscientiousness_industriousness": 1,
+                "extraversion_assertiveness": 2,
+                "category_action_figures": 1,
+              })}
+          />
+          <transition
+            target="rock'em_sock'em_robots"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": 5,
+                "decade_80s": 1,
+                "decade_90s": 1,
+                "toy_gender_preference_masculine": 1,
+                "extraversion_enthusiasm": 2,
+                "extraversion_assertiveness": 1,
+                "agreeableness_politeness": -2,
+                "agreeableness_compassion": -2,
+                "neuroticism_withdrawal": -2,
+                "neuroticism_volatility": 2,
+                "category_action_figures": 1,
+              })}
+          />
+          <transition
+            target="lite_brite"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": 5,
+                "decade_80s": 2,
+                "decade_90s": 1,
+                "toy_gender_preference_neutral": 1,
+                "openness_creativity": 1,
+                "openness_intellect": 2,
+                "conscientiousness_orderliness": 1,
+                "neuroticism_withdrawal": 1,
+                "neuroticism_volatility": -1,
+                "category_markers": 1,
+              })}
+          />
+          <transition
+            target="cabbage_patch_kids"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": 5,
+                "decade_80s": 3,
+                "decade_90s": 1,
+                "toy_gender_preference_feminine": 1,
+                "conscientiousness_orderliness": 2,
+                "extraversion_assertiveness": 1,
+                "agreeableness_politeness": 1,
+                "agreeableness_compassion": 2,
+                "neuroticism_withdrawal": -3,
+                "neuroticism_volatility": -3,
+                "category_dolls": 1,
+              })}
+          />
+          <transition
+            target="teddy_ruxpin"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": 2,
+                "decade_80s": 5,
+                "decade_90s": 2,
+                "toy_gender_preference_neutral": 1,
+                "openness_intellect": 1,
+                "agreeableness_politeness": 2,
+                "agreeableness_compassion": 2,
+                "neuroticism_withdrawal": 1,
+                "neuroticism_volatility": -2,
+                "category_stuffed_animals": 1,
+              })}
+          />
+          <transition
+            target="nintendo"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": 2,
+                "decade_80s": 5,
+                "decade_90s": 3,
+                "toy_gender_preference_neutral": 1,
+                "openness_intellect": 2.4,
+                "conscientiousness_industriousness": 1,
+                "extraversion_assertiveness": 1,
+                "neuroticism_withdrawal": 1,
+                "category_games": 1,
+              })}
+          />
+          <transition
+            target="game_boy"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": 1,
+                "decade_80s": 3,
+                "decade_90s": 5,
+                "toy_gender_preference_neutral": 1,
+                "openness_intellect": 2.5,
+                "conscientiousness_industriousness": 1,
+                "extraversion_enthusiasm": -1,
+                "extraversion_assertiveness": -1,
+                "neuroticism_withdrawal": 2,
+                "category_games": 1,
+              })}
+          />
+          <transition
+            target="glo_worm"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": 1,
+                "decade_80s": 3,
+                "decade_90s": 1,
+                "toy_gender_preference_neutral": 1,
+                "extraversion_enthusiasm": -1,
+                "extraversion_assertiveness": -3,
+                "agreeableness_politeness": 2,
+                "agreeableness_compassion": 2,
+                "neuroticism_withdrawal": 2,
+                "category_stuffed_animals": 1,
+              })}
+          />
+          <transition
+            target="masters_of_the_universe_he_man"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": 1,
+                "decade_80s": 5,
+                "decade_90s": 2,
+                "openness_creativity": 1,
+                "conscientiousness_industriousness": 1,
+                "extraversion_assertiveness": 2,
+                "agreeableness_politeness": -1,
+                "neuroticism_volatility": 2,
+                "category_action_figures": 1,
+              })}
+          />
+          <transition
+            target="care_bears"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": 1,
+                "decade_80s": 5,
+                "decade_90s": 1,
+                "toy_gender_preference_neutral": 1,
+                "conscientiousness_orderliness": 1,
+                "extraversion_enthusiasm": 2,
+                "extraversion_assertiveness": -2,
+                "agreeableness_politeness": 2,
+                "agreeableness_compassion": 2,
+                "neuroticism_withdrawal": 1,
+                "neuroticism_volatility": -1,
+                "category_stuffed_animals": 1,
+              })}
+          />
+          <transition
+            target="thundercats"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": 1,
+                "decade_80s": 5,
+                "decade_90s": 1,
+                "openness_creativity": 1,
+                "conscientiousness_industriousness": 1,
+                "extraversion_assertiveness": 1,
+                "agreeableness_politeness": -1,
+                "neuroticism_volatility": 1,
+                "category_action_figures": 1,
+              })}
+          />
+          <transition
+            target="monchichi"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": 2,
+                "decade_80s": 5,
+                "decade_90s": 1,
+                "openness_creativity": 1,
+                "conscientiousness_orderliness": 1,
+                "extraversion_enthusiasm": 1,
+                "agreeableness_politeness": 1,
+                "agreeableness_compassion": 2,
+                "category_stuffed_animals": 1,
+              })}
+          />
+          <transition
+            target="voltron"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": 1,
+                "decade_80s": 5,
+                "decade_90s": 1,
+                "openness_creativity": 1,
+                "conscientiousness_industriousness": 1,
+                "extraversion_assertiveness": 1,
+                "neuroticism_volatility": 1,
+                "category_action_figures": 1,
+              })}
+          />
+          <transition
+            target="polly_pocket"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": -1000,
+                "decade_80s": 1,
+                "decade_90s": 5,
+                "toy_gender_preference_masculine": -1000,
+                "toy_gender_preference_feminine": 1,
+                "openness_creativity": 2,
+                "openness_intellect": 1,
+                "conscientiousness_orderliness": 1,
+                "conscientiousness_industriousness": 2,
+                "extraversion_enthusiasm": 1,
+                "extraversion_assertiveness": 2,
+                "agreeableness_politeness": 1,
+                "agreeableness_compassion": 1,
+                "category_dolls": 1,
+              })}
+          />
+          <transition
+            target="tickle_me_elmo"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": -1000,
+                "decade_80s": -1000,
+                "decade_90s": 5,
+                "toy_gender_preference_neutral": 1,
+                "extraversion_enthusiasm": 1,
+                "agreeableness_compassion": 2,
+                "neuroticism_withdrawal": 1,
+                "category_stuffed_animals": 1,
+              })}
+          />
+          <transition
+            target="furby"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": -1000,
+                "decade_80s": 1,
+                "decade_90s": 5,
+                "toy_gender_preference_neutral": 1,
+                "openness_creativity": 1,
+                "openness_intellect": 1,
+                "conscientiousness_orderliness": 2,
+                "conscientiousness_industriousness": 1,
+                "extraversion_enthusiasm": 1,
+                "agreeableness_politeness": 1,
+                "agreeableness_compassion": 2,
+                "category_stuffed_animals": 1,
+              })}
+          />
+          <transition
+            target="tamagotchi"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": -1000,
+                "decade_80s": 1,
+                "decade_90s": 5,
+                "toy_gender_preference_neutral": 1,
+                "openness_creativity": 1,
+                "openness_intellect": 1,
+                "conscientiousness_orderliness": 3,
+                "extraversion_enthusiasm": 1,
+                "agreeableness_compassion": 2,
+                "category_games": 1,
+              })}
+          />
+          <transition
+            target="american_girl_doll"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": -1000,
+                "decade_80s": 3,
+                "decade_90s": 4,
+                "toy_gender_preference_masculine": -1000,
+                "toy_gender_preference_feminine": 1,
+                "openness_creativity": 1,
+                "conscientiousness_orderliness": 1,
+                "conscientiousness_industriousness": 2,
+                "extraversion_enthusiasm": 2,
+                "extraversion_assertiveness": 1,
+                "agreeableness_politeness": 1,
+                "agreeableness_compassion": 2,
+                "category_dolls": 1,
+              })}
+          />
+          <transition
+            target="super_soaker"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": -1000,
+                "decade_80s": 2,
+                "decade_90s": 5,
+                "openness_creativity": 1,
+                "conscientiousness_orderliness": -1,
+                "conscientiousness_industriousness": 1,
+                "extraversion_enthusiasm": 2,
+                "extraversion_assertiveness": 1,
+                "agreeableness_politeness": -1,
+                "agreeableness_compassion": -3,
+                "neuroticism_withdrawal": -2,
+                "neuroticism_volatility": 3,
+                "category_sports": 1,
+              })}
+          />
+          <transition
+            target="wwf_wrestling_buddies"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": -1000,
+                "decade_80s": 5,
+                "decade_90s": 2,
+                "toy_gender_preference_masculine": 1,
+                "extraversion_assertiveness": 1,
+                "agreeableness_politeness": -1,
+                "agreeableness_compassion": -2,
+                "neuroticism_withdrawal": -2,
+                "neuroticism_volatility": 2,
+                "category_action_figures": 1,
+              })}
+          />
+          <transition
+            target="little_tikes_cozy_coupe"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": 2,
+                "decade_80s": 2,
+                "decade_90s": 2,
+                "toy_gender_preference_neutral": 1,
+                "openness_creativity": 2,
+                "conscientiousness_industriousness": 1,
+                "extraversion_enthusiasm": 1,
+                "extraversion_assertiveness": 1,
+                "category_games": 1,
+              })}
+          />
+          <transition
+            target="beanie_babies"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": -1000,
+                "decade_80s": 2,
+                "decade_90s": 5,
+                "toy_gender_preference_neutral": 1,
+                "openness_creativity": -1,
+                "conscientiousness_orderliness": 3,
+                "conscientiousness_industriousness": 3,
+                "extraversion_assertiveness": 2,
+                "agreeableness_politeness": 1,
+                "category_stuffed_animals": 1,
+              })}
+          />
+          <transition
+            target="buzz_lightyear"
+            score={(datamodel, { computeScore }) =>
+              computeScore(datamodel, {
+                "decade_70s": -1000,
+                "decade_80s": 3,
+                "decade_90s": 5,
+                "toy_gender_preference_neutral": 1,
+                "openness_creativity": 1,
+                "conscientiousness_orderliness": 1,
+                "conscientiousness_industriousness": 3,
+                "extraversion_enthusiasm": 1,
+                "agreeableness_politeness": -1,
+                "agreeableness_compassion": 1,
+                "neuroticism_withdrawal": -3,
+                "neuroticism_volatility": 1,
+                "category_action_figures": 1,
+              })}
+          />
+        </transition-group>
+        <state id="stretch_armstrong">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="stretch_armstrong"
+              title={{
+                en: 'Stretch Armstrong',
+              }}
+              description={{
+                en:
+                  'Grab hold and stretch his arms, legs and torso up to four times his original size. You can stretch him and tie him in knots, he will always go back to his original shape!',
+              }}
+              image={{
+                path:
+                  'https://bmbx-images.imgix.net/ag/stretch-armstrong.jpg?fit=min&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="etch_a_sketch">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="etch_a_sketch"
+              title={{
+                en: 'Etch-a-Sketch',
+              }}
+              description={{
+                en:
+                  'For more than 50 years, children and adults alike have been discovering the magical world of creativity and pencil-free drawing with Classic Etch A Sketch! The iconic red frame, easy-to-use knobs, classic magic screen and shake-to-erase feature all contribute to the endless hours of fun it provides!',
+              }}
+              image={{
+                path:
+                  'https://bmbx-images.imgix.net/ag/etch-a-sketch.jpg?fit=min&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="mouse_trap">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="mouse_trap"
+              title={{
+                en: 'Mouse Trap',
+              }}
+              description={{
+                en:
+                  "Run, little mice, run! Build this fun game's crazy Mouse Trap contraption, but then, beware - you definitely don't want your mouse pawn to get trapped by it. Race to the finish and don't look back!",
+              }}
+              image={{
+                path:
+                  'https://bmbx-images.imgix.net/ag/mouse-trap.jpg?fit=min&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="evel_knievel_stunt_cycle">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="evel_knievel_stunt_cycle"
+              title={{
+                en: 'Evel Knievel Stunt Cycle',
+              }}
+              description={{
+                en:
+                  'The Evel Knievel stunt cycle was arguably the most iconic toy of the 1970s and continues to be sought after by collectors all over the globe.',
+              }}
+              image={{
+                path:
+                  'https://movement-prod.imgix.net/uploads/6d/7d8bcdb696413480bc9a4bf60b5c9e/upload.jpg?fit=min&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="atari_2600">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="atari_2600"
+              title={{
+                en: 'Atari 2600',
+              }}
+              description={{
+                en:
+                  "It's hard to imagine a time before video game consoles, but those of us around in the 70s distinctly remember how Atari changed our world. It was the beginning of a revolution and at $800 in today's dollars, it was a small price to play Pong in the comfort of your own home.",
+              }}
+              image={{
+                path:
+                  'https://bmbx-images.imgix.net/ag/atari-2600.jpg?fit=min&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="six_million_dollar_man">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="six_million_dollar_man"
+              title={{
+                en: 'Six Million Dollar Man',
+              }}
+              description={{
+                en:
+                  'The original action figure for the bionic Six Million Dollar Man man came out in 1975. It came with an engine block to show off the power of Steve Austin\'s "Bionic Power Arm", a bionic eye that you could look through, and roll-back skin so you could see all the expensive bionic goodness underneath. ',
+              }}
+              image={{
+                path:
+                  'https://movement-prod.imgix.net/uploads/7a/abc4825d9744f2a49d3a209766f8df/upload.jpg?fit=min&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="rock'em_sock'em_robots">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="rock'em_sock'em_robots"
+              title={{
+                en: "Rock'em Sock'em Robots",
+              }}
+              description={{
+                en:
+                  'Created in 1964, this pair of ever-dueling robots were controlled by two players who would furiously punch each other until one of their heads popped up, signaling the end of the round.',
+              }}
+              image={{
+                path:
+                  'https://bmbx-images.imgix.net/ag/rockem-sockem-robots.jpg?fit=min&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="lite_brite">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="lite_brite"
+              title={{
+                en: 'Lite Brite',
+              }}
+              description={{
+                en:
+                  "In 1967, Hasbro probably never imagined that such a simple toy would have such amazing success. Who knew that poking translucent colored pegs through black paper on a backlit grid could light up our imagination and spawn such creativity?",
+              }}
+              image={{
+                path:
+                  'https://bmbx-images.imgix.net/ag/lite-brite.jpg?fit=fill&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="cabbage_patch_kids">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="cabbage_patch_kids"
+              title={{
+                en: 'Cabbage Patch Kids',
+              }}
+              description={{
+                en:
+                  "Cabbage Patch Kids reached full-on frenzy status in 1980 following a TV talk show appearance. Parents camped out for for these cute cabbage-headed dolls in 1983, and by New Year's day over 3 million Cabbage Patch Kids had been sold.",
+              }}
+              image={{
+                path:
+                  'https://bmbx-images.imgix.net/ag/cabbage-patch-kids.jpg?fit=min&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="teddy_ruxpin">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="teddy_ruxpin"
+              title={{
+                en: 'Teddy Ruxpin',
+              }}
+              description={{
+                en:
+                  'This lovable story telling bear came on the scene in 1985. Teddy Ruxpin used cassette tapes to "read"  to us using the same technology deployed by talking creatures at Disneyland. At the peak of his popularity, Teddy Ruxpin became the best-selling toy of 1985 and 1986.',
+              }}
+              image={{
+                path:
+                  'https://bmbx-images.imgix.net/ag/teddy-ruxpin.jpg?fit=min&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="nintendo">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="nintendo"
+              title={{
+                en: 'Nintendo',
+              }}
+              description={{
+                en:
+                  'This is system the that started it all! Remember your first Goomba stomp? Originally released in 1985, the original NES dominated and redefined the video game market.',
+              }}
+              image={{
+                path:
+                  'https://bmbx-images.imgix.net/ag/nintendo.jpg?fit=min&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="game_boy">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="game_boy"
+              title={{
+                en: 'Game Boy',
+              }}
+              description={{
+                en:
+                  "The Game Boy is an 8-bit handheld game console developed by Nintendo and first released to the public in 1989. Sold as a standalone unit or bundled with the puzzle game Tetris, Game Boy outsold its rivals and became a significant success into the 90s.",
+              }}
+              image={{
+                path:
+                  'https://bmbx-images.imgix.net/ag/game-boy.png?fit=min&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="glo_worm">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="glo_worm"
+              title={{
+                en: 'Glo Worm',
+              }}
+              description={{
+                en:
+                  'Launched in 1982, this iconic Playskool stuffed toy was such an astounding success, it spawned a whole line of "Glo Friends" , with story books, night lights, videos and other merchandise. ',
+              }}
+              image={{
+                path:
+                  'https://movement-prod.imgix.net/uploads/0a/ccb88b489640ae924156f0737e5d08/upload.jpg?fit=min&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="masters_of_the_universe_he_man">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="masters_of_the_universe_he_man"
+              title={{
+                en: 'Masters of the Universe / He-Man',
+              }}
+              description={{
+                en:
+                  'By the power of Greyskull! Launched in 1981, the Masters of the Universe action figures took off. Fanned by the success of the cartoon, by 1983 every kid had He-Man at the top of their Christmas list.',
+              }}
+              image={{
+                path:
+                  'https://bmbx-images.imgix.net/ag/he-man.jpg?fit=min&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="care_bears">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="care_bears"
+              title={{
+                en: 'Care Bears',
+              }}
+              description={{
+                en:
+                  'Where would we be without the Care Bear stare? These empathetic bears first appeared on the scene in the early 80s, won our hearts, and taught us how to hug. They started out as simple greeting card characters and soon graduated into a rainbow of plush toys. Each was endowed with a unique symbol on its tummy as an emotional cue communicating their super power to playmates.',
+              }}
+              image={{
+                path:
+                  'https://bmbx-images.imgix.net/ag/care-bears.jpg?fit=min&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="thundercats">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="thundercats"
+              title={{
+                en: 'Thundercats',
+              }}
+              description={{
+                en:
+                  'Thundercats, Hooo!!! This iconic animated series ran from 1985 to 1989 and was based on the line of action figures (not the other way around). The Lion-O action figure featured battlematic action, the Sword of Omens, and light-up eyes to give you "sight beyond sight".',
+              }}
+              image={{
+                path:
+                  'https://bmbx-images.imgix.net/ag/thundercats.jpg?fit=min&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="monchichi">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="monchichi"
+              title={{
+                en: 'Monchichi',
+              }}
+              description={{
+                en:
+                  'This line of cute stuffed monkeys was first released in 1974. They started to become popular in the US in the 80s after Mattel bought the license for the toy line, and a cartoon series, Monchhichis, began airing on ABC. ',
+              }}
+              image={{
+                path:
+                  'https://movement-prod.imgix.net/uploads/9a/405bd6e06742ff8c06751a4afabaff/upload.jpg?fit=min&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="voltron">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="voltron"
+              title={{
+                en: 'Voltron',
+              }}
+              description={{
+                en:
+                  'From days of long ago, from uncharted regions of the Universe, comes a legend... the legend of Voltron, defender of the Universe! Five fearless lion-robots come together to form the mighty robot, sold seperately of course. If you were lucky enough to get all five you were probably one of the coolest kids in 1984.',
+              }}
+              image={{
+                path:
+                  'https://movement-prod.imgix.net/uploads/df/2a7e0cfa49485fa94457eb81850fe7/upload.jpg?fit=min&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="polly_pocket">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="polly_pocket"
+              title={{
+                en: 'Polly Pocket',
+              }}
+              description={{
+                en:
+                  'These teeny dolls were a part of a miniature play universe called Pollyville. The developer of the tiny scenes and dolls created them for his daughter Kate in 1989 so she could carry the compact-sized Polly and friends just like mom carried around her make-up.',
+              }}
+              image={{
+                path:
+                  'https://movement-prod.imgix.net/uploads/4f/d993f614ac40f4bb370eea11e571da/upload.jpg?fit=min&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="tickle_me_elmo">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="tickle_me_elmo"
+              title={{
+                en: 'Tickle-me Elmo',
+              }}
+              description={{
+                en:
+                  'Tickle Me Elmo was an instant success and became "it" toy of the 1996 holiday season. Retailers were mobbed by Elmo-seeking parents willing to pay anything for this revolutionary tickle technology. ',
+              }}
+              image={{
+                path:
+                  'https://movement-prod.imgix.net/uploads/48/39aecf39e84a55b89533fb8b693e46/upload.jpg?fit=min&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="furby">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="furby"
+              title={{
+                en: 'Furby',
+              }}
+              description={{
+                en:
+                  'In the 90s we experienced the emergence of the tech-toy market and Furby was one of the most advanced. This furry animatronic creature came out of the box speaking "Furbish" but eventually could learn english, reaching an incredible 200 word vocabulary. When Furby said "I love you" for the first time, our hearts melted. ',
+              }}
+              image={{
+                path:
+                  'https://movement-prod.imgix.net/uploads/2e/b7792da575417f85c588b1c5f6bee2/upload.jpg?fit=min&h=300&w=300',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="tamagotchi">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="tamagotchi"
+              title={{
+                en: 'Tamagotchi',
+              }}
+              description={{
+                en:
+                  'The Tamagotchi craze started in 1997 and held our attention for years, possibly at the expense of our real pets. It\'s creators won a satirical Nobel Prize in economics for diverting millions of man-hours of work into the husbandry of virtual pets and took the "pet rock" concept to a whole new level.',
+              }}
+              image={{
+                path:
+                  'https://bmbx-images.imgix.net/ag/tamagotchi.jpg?fit=min&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="american_girl_doll">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="american_girl_doll"
+              title={{
+                en: 'American Girl Doll',
+              }}
+              description={{
+                en:
+                  "These realistic and beloved dolls were first released in 1986, but took the nation by storm in the 1990s. Each American Girl came with a book told from the viewpoint of the girl, with stories focused on various periods of American history. Despite the $100+ price tag, the popularity of this excellent line of imaginative toys shows no sign of slowing down.",
+              }}
+              image={{
+                path:
+                  'https://movement-prod.imgix.net/uploads/d2/2df2ed387c453ca7ff397d8cd1d1e4/upload.PNG?fit=min&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="super_soaker">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="super_soaker"
+              title={{
+                en: 'Super Soaker',
+              }}
+              description={{
+                en:
+                  'The high-pressure water gun was designed by a NASA engineer, and with a range of over 50 feet, the Super Soaker was the weapon of choice for backyard battles throughout the 90s. Selling over 250 million units worldwide, its success more than paid for the extensive 10-year research and development costs.',
+              }}
+              image={{
+                path:
+                  'https://bmbx-images.imgix.net/ag/super-soaker.jpg?fit=min&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="wwf_wrestling_buddies">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="wwf_wrestling_buddies"
+              title={{
+                en: 'WWF Wrestling Buddies',
+              }}
+              description={{
+                en:
+                  "In the 1980s, professional wrestling had a huge youth fan base. The Wrestling Buddies were a welcome toy, encouraging rambunctious kids to practice their wrestling skills on pillow-shaped warriors (rather than their friends).",
+              }}
+              image={{
+                path:
+                  'https://bmbx-images.imgix.net/ag/wrestling-buddies.jpg?fit=min&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="little_tikes_cozy_coupe">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="little_tikes_cozy_coupe"
+              title={{
+                en: 'Little Tikes Cozy Coupe',
+              }}
+              description={{
+                en:
+                  "The Little Tikes Cozy Coupe has taken us on many imaginative road trips and joy-rides. Whether it was being pushed from behind or foot-powered Flintstone style, the Cozy Coupe helped us get from point A to point B, taught us how to turn the ignition and enabled us to \"fill 'er up\" with an open-and-close gas cap when she ran out of gas.",
+              }}
+              image={{
+                path:
+                  'https://bmbx-images.imgix.net/ag/cozy-coupe.jpg?fit=min&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="beanie_babies">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="beanie_babies"
+              title={{
+                en: 'Beanie Babies',
+              }}
+              description={{
+                en:
+                  "Launched in 1993 by Ty, Inc., Beanie Babies' popularity skyrocketed, fueled by obsessed collectors and kids alike. Even though most Beanie Babies were modestly priced, special editions and rare items reached price tags well over $1,000.",
+              }}
+              image={{
+                path:
+                  'https://bmbx-images.imgix.net/ag/beanie-babies.jpg?fit=min&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+        <state id="buzz_lightyear">
+          <onentry />
+          <fragment>
+            <doc-result
+              id="buzz_lightyear"
+              title={{
+                en: 'Buzz Lightyear',
+              }}
+              description={{
+                en:
+                  'The first time we heard "to infinity and beyond!" we knew Buzz wasn\'t going to be your average sidekick. Inspired by real-life space-hero Buzz Aldrin, Lightyear went on a real space mission at the request of NASA and succeeded in his mission of landing in our hearts, securing his place in history as one of the most beloved and popular toys of all time. ',
+              }}
+              image={{
+                path:
+                  'https://movement-prod.imgix.net/uploads/c8/7c2f7fc9b944bfa812c17e1a0c2c62/upload.jpg?fit=min&h=600&w=600',
+              }}
+            />
+          </fragment>
+        </state>
+      </state>
+    </parallel>
+  </state>
+</scxml>
